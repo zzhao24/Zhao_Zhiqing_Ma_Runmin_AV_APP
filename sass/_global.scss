@@ -1,0 +1,54 @@
+/* GLOBAL */
+body{
+  background-color: $black;
+  color: $white;
+  font-family: $lato;
+  min-height: 100vh;
+  padding-top: 80px;
+  padding-bottom: 50px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+  font-family: $raleway;
+  color: $orange;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.heading-kid{
+  font-family: $sniglet;
+}
+
+.orange{
+  color: $orange;
+}
+
+/* HEADER */
+#main-header{
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 10px 3px rgba(#000, .5);
+  background: $grey;
+  .header-logo{
+    width: auto;
+    height: 60px;
+  }
+}
+
+.component-wrapper{
+  min-height: calc(100vh - 130px);
+}
+
+/* FOOTER */
+#main-footer{
+  background-color: $orange;
+  height: 50px;
+  font-size: .85rem;
+}
