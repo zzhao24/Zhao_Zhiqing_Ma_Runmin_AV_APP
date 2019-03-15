@@ -1,0 +1,30 @@
+.login-bg{
+  position: fixed;
+  z-index: -200;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  opacity: .2;
+  background: url("../images/login-background.jpg") no-repeat right center;
+  -webkit-background-size: cover;
+  background-size: cover;
+}
+
+
+#login-form{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .form-warp{
+    width: 500px;
+    max-width: 100%;
+    background-color: $grey;
+    padding: 2rem 3rem;
+    border-radius: 10px;
+    margin-bottom: 80px;
+  }
+
+}
