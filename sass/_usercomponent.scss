@@ -1,3 +1,4 @@
+/* USERS PAGE*/
 #users{
   display: flex;
   justify-content: center;
@@ -12,6 +13,59 @@
       max-width: 260px;
       height: auto;
       margin-bottom: 20px;
+    }
+  }
+}
+
+.video-container{
+  video{
+    width: 100%;
+    margin-bottom: 35px;
+  }
+}
+
+/* KIDS PAGE*/
+#kid-wrap{
+  background: url("../images/cartoon-background.png") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  background-size: cover;
+  padding-top: 45px;
+  padding-bottom: 45px;
+
+  .first-video-wrapper{
+    padding: 30px 15px;
+    border: 5px solid $white;
+    background-color: $orange;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    border-radius: 30px;
+
+    @include media-breakpoint-up(md){
+      padding: 45px;
+      border: 10px solid $white;
+    }
+
+    h3{
+      @extend .heading-kid;
+    }
+  }
+
+  .genres{
+    font-family: $sniglet;
+    .text{
+      padding: 1.5rem;
+      background-color: $orange;
+      -webkit-border-radius: 1rem;
+      -moz-border-radius: 1rem;
+      border-radius: 1rem;
+      text-transform: uppercase;
+      font-size: .85rem;
+      @include media-breakpoint-up(md){
+        font-size: 1rem;
+      }
+      @include media-breakpoint-up(lg){
+        font-size: 1.25rem;
+      }
     }
   }
 }
