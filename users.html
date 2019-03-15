@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Roku - Audio / Video App</title>
+    <link rel="stylesheet" href="css/main.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js" integrity="sha384-SlE991lGASHoBfWbelyBPLsUlwY1GwNDJo3jSJO04KZ33K2bwfV9YBauFfnzvynJ" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+<body>
+<main id="app">
+    <div v-if="!authenticated" class="login-bg"></div>
+
+    <!-- MAIN HEADER -->
+    <header id="main-header" class="py-3 fixed-top">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 d-flex justify-content-center">
+                    <img src="images/roku.svg" alt="Roku logo" class="header-logo">
+                </div>
+                <nav v-if="authenticated" class="position-absolute" id="header-nav">
+                    <ul class="list-inline mb-0">
+                        <li v-if="authenticated" class="list-inline-item"><i class="fas fa-user-circle"></i></li>
+                        <li v-if="administrator" class="list-inline-item"><i class="fas fa-cog"></i></li>
+                        <li v-if="authenticated" v-on:click="logout()" class="list-inline-item"><i class="fas fa-power-off"></i></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header><!-- /#main-header -->
+
+    <!-- first thing in component templates should be a container -->
+
+    <div class="component-wrapper" id="users">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-4 col-lg-3 text-center user-wrap">
+                    <img class="user-avatar" src="images/adult.png" alt="Parent">
+                    <p class="text-uppercase">Parent</p>
+                </div>
+                <div class="col-12 col-md-4 col-lg-3 text-center user-wrap">
+                    <img class="user-avatar" src="images/kid.png" alt="Kid">
+                    <p class="text-uppercase">Kid</p>
+                </div>
+                <div class="col-12 col-md-4 col-lg-3 text-center user-wrap">
+                    <img class="user-avatar" src="images/temp_avatar.png" alt="Guest">
+                    <p class="text-uppercase">Guest</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <footer class="container-fluid d-flex align-items-center justify-content-end fixed-bottom" id="main-footer">
+        <div class="copyright">
+            <p class="mb-0">&copy; Copyright 2019. Roku. All Rights Reserved. </p>
+        </div>
+    </footer>
+</main>
+
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<script type="module" src="js/main.js"></script>
+
+<script>
+    $('.toast').toast();
+</script>
+</body>
+</html>
