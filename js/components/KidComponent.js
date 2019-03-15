@@ -2,7 +2,7 @@ export default {
     props: ['currentuser'],
 
     template: `
-    <div class="component-wrapper video-container" id="parent-wrap">
+    <div class="component-wrapper video-container" id="kid-wrap">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-xl-10">
@@ -115,7 +115,7 @@ export default {
             </div>
         </div>
     </div>
-
+    
     `,
 
     data() {
@@ -167,9 +167,9 @@ export default {
                     // grab the first one in the list and make it active
                     this.currentMediaDetails = data[0];
                 })
-            .catch(function(error) {
-                console.error(error);
-            });
+                .catch(function(error) {
+                    console.error(error);
+                });
         },
 
         switchActiveMedia(media) {
