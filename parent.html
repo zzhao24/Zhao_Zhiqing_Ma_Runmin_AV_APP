@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Roku - Audio / Video App</title>
+    <link rel="stylesheet" href="css/main.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js" integrity="sha384-SlE991lGASHoBfWbelyBPLsUlwY1GwNDJo3jSJO04KZ33K2bwfV9YBauFfnzvynJ" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+<body>
+<main id="app">
+    <!-- MAIN HEADER -->
+    <header id="main-header" class="py-3 fixed-top">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 d-flex justify-content-center">
+                    <img src="images/roku.svg" alt="Roku logo" class="header-logo">
+                </div>
+                <nav v-if="authenticated" class="position-absolute" id="header-nav">
+                    <ul class="list-inline mb-0">
+                        <li v-if="authenticated" class="list-inline-item"><i class="fas fa-user-circle"></i></li>
+                        <li v-if="administrator" class="list-inline-item"><i class="fas fa-cog"></i></li>
+                        <li v-if="authenticated" v-on:click="logout()" class="list-inline-item"><i class="fas fa-power-off"></i></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header><!-- /#main-header -->
+
+    <!-- first thing in component templates should be a container -->
+
+    <div class="component-wrapper video-container" id="parent-wrap">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-10">
+                    <div class="first-video-wrapper">
+                        <video autoplay controls muted src="video/avengers.mp4"></video>
+                        <h3 class="white">Guardians of the Galaxy Vol. 2</h3>
+                        <p class="desc">The Guardians must fight to keep their newfound family together as they unravel the mystery of Peter Quill&rsquo;s true parentage.</p>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-12 genres my-4">
+                            <div class="row justify-content-center">
+                                <div class="col-auto my-2">
+                                    <div class="text">genre</div>
+                                </div>
+                                <div class="col-auto my-2">
+                                    <div class="text">genre</div>
+                                </div>
+                                <div class="col-auto my-2">
+                                    <div class="text">genre</div>
+                                </div>
+                                <div class="col-auto my-2">
+                                    <div class="text">genre</div>
+                                </div>
+                                <div class="col-auto my-2">
+                                    <div class="text">genre</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-6 col-md-4 col-lg-3 my-2">
+                            <img src="images/video/guardians2.jpg" alt="media thumb" class="img-thumbnail rounded">
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3 my-2">
+                            <img src="images/video/guardians2.jpg" alt="media thumb" class="img-thumbnail rounded">
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3 my-2">
+                            <img src="images/video/guardians2.jpg" alt="media thumb" class="img-thumbnail rounded">
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3 my-2">
+                            <img src="images/video/guardians2.jpg" alt="media thumb" class="img-thumbnail rounded">
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3 my-2">
+                            <img src="images/video/guardians2.jpg" alt="media thumb" class="img-thumbnail rounded">
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3 my-2">
+                            <img src="images/video/guardians2.jpg" alt="media thumb" class="img-thumbnail rounded">
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3 my-2">
+                            <img src="images/video/guardians2.jpg" alt="media thumb" class="img-thumbnail rounded">
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3 my-2">
+                            <img src="images/video/guardians2.jpg" alt="media thumb" class="img-thumbnail rounded">
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3 my-2">
+                            <img src="images/video/guardians2.jpg" alt="media thumb" class="img-thumbnail rounded">
+                        </div>
+                        <div class="col-6 col-md-4 col-lg-3 my-2">
+                            <img src="images/video/guardians2.jpg" alt="media thumb" class="img-thumbnail rounded">
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+    <footer class="container-fluid d-flex align-items-center justify-content-end fixed-bottom" id="main-footer">
+        <div class="copyright">
+            <p class="mb-0">&copy; Copyright 2019. Roku. All Rights Reserved. </p>
+        </div>
+    </footer>
+</main>
+
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<script type="module" src="js/main.js"></script>
+
+<script>
+    $('.toast').toast();
+</script>
+</body>
+</html>

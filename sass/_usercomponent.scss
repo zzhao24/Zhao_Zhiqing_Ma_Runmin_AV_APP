@@ -24,6 +24,12 @@
   }
 }
 
+/* PARENT PAGE */
+#parent-wrap{
+  padding-top: 45px;
+  padding-bottom: 45px;
+}
+
 /* KIDS PAGE*/
 #kid-wrap{
   background: url("../images/cartoon-background.png") no-repeat center center fixed;
@@ -31,6 +37,9 @@
   background-size: cover;
   padding-top: 45px;
   padding-bottom: 45px;
+  &::after{
+    content: none;
+  }
 
   .first-video-wrapper{
     padding: 30px 15px;
