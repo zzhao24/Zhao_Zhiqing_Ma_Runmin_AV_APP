@@ -2,92 +2,120 @@ export default {
     props: ['currentuser'],
 
     template: `
-    <div class="container">
-    <!-- render this if we're viewing television or film -->
-        <div class="row" v-if="activeMediaType == 'video' && retrievedMedia.length > 0">
-            <div class="col-12 order-2 order-md-1 col-md-3 media-container">
-                <h4 class="media-title">{{currentMediaDetails.movies_title}}</h4>
-                <p class="media-details" v-html="currentMediaDetails.movies_storyline"></p>
-                <span class="media-time">{{currentMediaDetails.movies_runtime}}</span>
-                <span class="media-year">Released in {{currentMediaDetails.movies_year}}</span>
-            </div>
-
-            <div class="col-12 order-1 order-md-2 col-md-9 media-container">
-                <video autoplay controls muted :src="'video/' + currentMediaDetails.movies_trailer" class="fs-video"></video>
-            </div>
-        </div>
-
-        <div class="row" v-if="activeMediaType == 'audio' && retrievedMedia.length > 0">
-            <div class="col-12 order-2 order-md-1 col-md-6 media-container">
-                <h4 class="media-title">{{currentMediaDetails.audio_artist}} * {{currentMediaDetails.audio_title}}</h4>
-                <p class="media-details" v-html="currentMediaDetails.audio_storyline"></p>
-                <span class="media-year">Released in {{currentMediaDetails.audio_year}}</span>              
-            </div>
-
-            <div class="col-12 order-1 order-md-2 col-md-6 audio-wrapper">
-                <audio autoplay controls :src="'audio/' + currentMediaDetails.audio_src"/>
-                <img :src="'images/audio/' + currentMediaDetails.audio_cover" alt="album art" class="img-fluid"/>
-            </div>
-        </div>
-
-        <div class="row"> <!-- 2-up for nav and media info -->
-            <nav class="col-12 col-sm-3 side-nav">
-                <ul class="media-type">
-                    <li v-for="media in mediaTypes" :data-type="media.description" @click="loadMedia(null, media.description)">
-                        <span>
-                            <i v-bind:class="[media.iconClass]"></i>
-                        </span>
-                        
-                        <span class="d-none d-md-block">{{ media.description }}</span>
-                    </li>
-                </ul>
-            </nav>
-
-            <div class="col-12 col-sm-9 media-info">
-                <!-- genres for video -->
-                    <ul v-if="activeMediaType == 'video'" class="media-genres">
-                        <li>
-                            <a href="action" @click.prevent="loadMedia('action', null)">Action</a>
-                        </li>
-                        <li>
-                            <a href="comedy" @click.prevent="loadMedia('comedy', null)">Comedy</a>
-                        </li>
-                        <li>
-                            <a href="family" @click.prevent="loadMedia('family', null)">Family</a>
-                        </li>
-                        <li>
-                            <a href="horror" @click.prevent="loadMedia('fantasy', null)">Fantasy</a>
-                        </li>
-                        <li>
-                            <a href="horror" @click.prevent="loadMedia(null, null)">All</a>
-                        </li>
-                    </ul>
-
-                <!-- genres for audio -->
-                <ul v-else class="media-genres">
-                        <li>
-                            <a href="action" @click.prevent="loadMedia('alternative', null)">Alternative</a>
-                        </li>
-                        <li>
-                            <a href="comedy" @click.prevent="loadMedia('blues', null)">Blues</a>
-                        </li>
-                        <li>
-                            <a href="family" @click.prevent="loadMedia('rock', null)">Rock</a>
-                        </li>
-                        <li>
-                            <a href="horror" @click.prevent="loadMedia('soundtrack', null)">Soundtracks</a>
-                        </li>
-                        <li>
-                            <a href="horror" @click.prevent="loadMedia(null, 'audio')">All</a>
-                        </li>
-                    </ul>
-                <div class="thumb-wrapper clearfix">
-                    <img v-if="activeMediaType == 'video'" v-for="media in retrievedMedia" :src="'images/video/' + media.movies_cover" alt="media thumb" @click="switchActiveMedia(media)" class="img-thumbnail rounded float-left media-thumb">
-                    <img v-if="activeMediaType == 'audio'" v-for="media in retrievedMedia" :src="'images/audio/' + media.audio_cover" alt="media thumb" @click="switchActiveMedia(media)" class="img-thumbnail rounded float-left media-thumb audio-thumb">
+    <div class="component-wrapper video-container" id="parent-wrap">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-10">
+                    <nav class="col-12 side-nav">
+                        <ul class="media-type">
+                            <li v-for="media in mediaTypes" :data-type="media.description" @click="loadMedia(null, media.description)">
+                            <span>
+                                <i v-bind:class="[media.iconClass]"></i>
+                            </span>
+    
+                                <span class="d-none d-md-block">{{ media.description }}</span>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
-            </div>       
-        </div> <!-- end 2-up for media info -->
+    
+    
+                <div class="col-xl-10">
+                    <div class="first-video-wrapper" v-if="activeMediaType == 'video' && retrievedMedia.length > 0">
+                        <video autoplay controls muted :src="'video/' + currentMediaDetails.movies_trailer"></video>
+                        <h3 class="white">{{currentMediaDetails.movies_title}}</h3>
+                        <p class="desc" v-html="currentMediaDetails.movies_storyline"></p>
+                        <span class="media-time">{{currentMediaDetails.movies_runtime}}</span>
+                        <span class="media-year">Released in {{currentMediaDetails.movies_year}}</span>
+                    </div>
+    
+    
+                    <div class="first-video-wrapper" v-if="activeMediaType == 'audio' && retrievedMedia.length > 0">
+                        <img :src="'images/audio/' + currentMediaDetails.audio_cover" alt="album art" class="img-fluid"/>
+                        <audio autoplay controls :src="'audio/' + currentMediaDetails.audio_src"/>
+                        <h3 class="white">{{currentMediaDetails.audio_artist}} * {{currentMediaDetails.audio_title}}</h3>
+                        <p class="desc" v-html="currentMediaDetails.audio_storyline"></p>
+                        <span class="media-year">Released in {{currentMediaDetails.audio_year}}</span>
+                    </div>
+    
+                </div>
+            </div>
+    
+    
+            <div class="row">
+                <div class="col-12 genres my-4">
+    
+                    <!-- Movie Genres -->
+                    <div class="row justify-content-center" v-if="activeMediaType == 'video'">
+                        <div class="col-auto my-2">
+                            <a class="text" href="action" @click.prevent="loadMedia('Action', 'video')">Action</a>
+                        </div>
+                        <div class="col-auto my-2">
+                            <a class="text" href="comedy" @click.prevent="loadMedia('Comedy', 'video')">Comedy</a>
+                        </div>
+                        <div class="col-auto my-2">
+                            <a class="text" href="family" @click.prevent="loadMedia('Family', 'video')">Family</a>
+                        </div>
+                        <div class="col-auto my-2">
+                            <a class="text" href="fantasy" @click.prevent="loadMedia('Fantasy', 'video')">Fantasy</a>
+                        </div>
+                        <div class="col-auto my-2">
+                            <a class="text" href="all" @click.prevent="loadMedia(null, 'video')">All</a>
+                        </div>
+                    </div>
+    
+                    <!-- Audio Genres -->
+                    <div class="row justify-content-center" v-if="activeMediaType == 'audio'">
+                        <div class="col-auto my-2">
+                            <a class="text" href="alternative" @click.prevent="loadMedia('Alternative', 'video')">Action</a>
+                        </div>
+                        <div class="col-auto my-2">
+                            <a class="text" href="blues" @click.prevent="loadMedia('Blues', 'video')">Comedy</a>
+                        </div>
+                        <div class="col-auto my-2">
+                            <a class="text" href="rock" @click.prevent="loadMedia('Rock', 'video')">Family</a>
+                        </div>
+                        <div class="col-auto my-2">
+                            <a class="text" href="soundtrack" @click.prevent="loadMedia('Soundtrack', 'video')">Fantasy</a>
+                        </div>
+                        <div class="col-auto my-2">
+                            <a class="text" href="all" @click.prevent="loadMedia(null, 'video')">All</a>
+                        </div>
+                    </div>
+    
+    
+                    <!-- TV Genres -->
+                    <div class="row justify-content-center" v-if="activeMediaType == 'tv'">
+                        <div class="col-auto my-2">
+                            <a class="text" href="action" @click.prevent="loadMedia('Action', 'video')">Action</a>
+                        </div>
+                        <div class="col-auto my-2">
+                            <a class="text" href="comedy" @click.prevent="loadMedia('Comedy', 'video')">Comedy</a>
+                        </div>
+                        <div class="col-auto my-2">
+                            <a class="text" href="family" @click.prevent="loadMedia('Family', 'video')">Family</a>
+                        </div>
+                        <div class="col-auto my-2">
+                            <a class="text" href="fantasy" @click.prevent="loadMedia('Fantasy', 'video')">Fantasy</a>
+                        </div>
+                        <div class="col-auto my-2">
+                            <a class="text" href="all" @click.prevent="loadMedia(null, 'video')">All</a>
+                        </div>
+                    </div>
+                </div>
+    
+    
+                <div v-if="activeMediaType == 'video'" v-for="media in retrievedMedia" class="col-6 col-md-4 col-lg-3 my-2">
+                    <img :src="'images/video/' + media.movies_cover" alt="media thumb" @click="switchActiveMedia(media)" class="img-thumbnail rounded float-left media-thumb">
+                </div>
+                <div v-if="activeMediaType == 'audio'" v-for="media in retrievedMedia" class="col-6 col-md-4 col-lg-3 my-2">
+                    <img :src="'images/audio/' + media.audio_cover" alt="media thumb" @click="switchActiveMedia(media)" class="img-thumbnail rounded float-left media-thumb audio-thumb">
+                </div>
+    
+            </div>
+        </div>
     </div>
+
     `,
 
     data() {
@@ -96,7 +124,7 @@ export default {
             activeMediaType: "video",
 
             // push first (or random) media object here (selected / filtered on create)
-            currentMediaDetails: { 
+            currentMediaDetails: {
                 source: "avengers.mp4",
             },
 
@@ -129,15 +157,15 @@ export default {
             }
             // build the url based on any filter we pass in (will need to expand on this for audio)
 
-            let url = (filter == null) ? `./admin/index.php?media=${this.activeMediaType}` : `./admin/index.php?media=${this.mediaType}&&filter=${filter}`;
+            let url = (filter == null) ? `./admin/index.php?media=${this.activeMediaType}` : `./admin/index.php?media=${mediaType}&&filter=${filter}`;
 
             fetch(url)
                 .then(res => res.json())
-                .then(data => {                    
+                .then(data => {
                     // we're gettin them all, dump it all in the media container
                     this.retrievedMedia = data;
                     // grab the first one in the list and make it active
-                    this.currentMediaDetails = data[0];                    
+                    this.currentMediaDetails = data[0];
                 })
             .catch(function(error) {
                 console.error(error);
