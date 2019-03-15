@@ -19,7 +19,6 @@ export default {
                     </nav>
                 </div>
     
-    
                 <div class="col-xl-10">
                     <div class="first-video-wrapper" v-if="activeMediaType == 'video' && retrievedMedia.length > 0">
                         <video autoplay controls muted :src="'video/' + currentMediaDetails.movies_trailer"></video>
@@ -27,9 +26,14 @@ export default {
                         <p class="desc" v-html="currentMediaDetails.movies_storyline"></p>
                         <span class="media-time">{{currentMediaDetails.movies_runtime}}</span>
                         <span class="media-year">Released in {{currentMediaDetails.movies_year}}</span>
+                        <div class="comment-area">
+                            <div v-for="review in currentMediaReviews" class="my-2">
+                                <p v-html="review.comment"></p>
+                                <p v-html="review.comment"></p>
+                            </div>
+                        </div>
                     </div>
-    
-    
+   
                     <div class="first-video-wrapper" v-if="activeMediaType == 'audio' && retrievedMedia.length > 0">
                         <img :src="'images/audio/' + currentMediaDetails.audio_cover" alt="album art" class="img-fluid"/>
                         <audio autoplay controls :src="'audio/' + currentMediaDetails.audio_src"/>
@@ -37,7 +41,7 @@ export default {
                         <p class="desc" v-html="currentMediaDetails.audio_storyline"></p>
                         <span class="media-year">Released in {{currentMediaDetails.audio_year}}</span>
                     </div>
-    
+   
                 </div>
             </div>
     
@@ -137,6 +141,8 @@ export default {
 
             retrievedMedia: [],
 
+            currentMediaReviews: [],
+
             // controls mute / unmute for video element
             vidActive: false
         }
@@ -157,6 +163,8 @@ export default {
             }
             // build the url based on any filter we pass in (will need to expand on this for audio)
 
+
+
             let url = (filter == null) ? `./admin/index.php?media=${this.activeMediaType}` : `./admin/index.php?media=${mediaType}&&filter=${filter}`;
 
             fetch(url)
@@ -166,16 +174,25 @@ export default {
                     this.retrievedMedia = data;
                     // grab the first one in the list and make it active
                     this.currentMediaDetails = data[0];
+
+                    return fetch(`./admin/comment.php?movies_id=${this.currentMediaDetails.movies_id}`);
+                })
+                .then(res => res.json())
+                .then(data => {
+                    this.currentMediaReviews = data;
                 })
             .catch(function(error) {
                 console.error(error);
             });
+
         },
 
         switchActiveMedia(media) {
             console.log(media);
 
             this.currentMediaDetails = media;
-        }
+
+        },
+
     }
 }
