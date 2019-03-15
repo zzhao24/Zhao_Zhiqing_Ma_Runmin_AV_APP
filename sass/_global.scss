@@ -40,6 +40,16 @@ h6{
     width: auto;
     height: 60px;
   }
+
+  #header-nav{
+    top: 50%;
+    right: 15px;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+  }
 }
 
 .component-wrapper{
