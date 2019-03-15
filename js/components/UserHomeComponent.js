@@ -29,7 +29,7 @@ export default {
                         <div class="comment-area">
                             <div v-for="review in currentMediaReviews" class="my-2">
                                 <p v-html="review.comment"></p>
-                                <p v-html="review.comment"></p>
+                                <p class="ratings">Rated: {{review.rating_number}} / 5</p>
                             </div>
                         </div>
                     </div>
@@ -41,6 +41,29 @@ export default {
                         <p class="desc" v-html="currentMediaDetails.audio_storyline"></p>
                         <span class="media-year">Released in {{currentMediaDetails.audio_year}}</span>
                     </div>
+   
+   
+                <form id="comment-form">
+                      <div class="form-group">
+                            <label for="comment">Comment</label>
+                            <input v-model="input.comment" type="text" class="form-control" id="comment" placeholder="Your Comment">
+                      </div>
+                      <div class="form-group">
+                            <label for="rating">Rating</label>
+                            <select v-model="input.rating" class="form-control" id="rating">
+                                  <option value="" disabled selected>Rate this video</option>
+                                  <option value="1">1</option>
+                                  <option value="2">2</option>
+                                  <option value="3">3</option>
+                                  <option value="4">4</option>
+                                  <option value="5">5</option>
+                            </select>
+                      </div>
+                      
+                      <input v-model="input.movie = currentMediaDetails.movies_id"  type="hidden">
+
+                      <button v-on:click.prevent="submitComment()" type="submit" class="btn btn-primary">Submit</button>
+                </form>
    
                 </div>
             </div>
@@ -144,7 +167,13 @@ export default {
             currentMediaReviews: [],
 
             // controls mute / unmute for video element
-            vidActive: false
+            vidActive: false,
+
+            input: {
+                comment: "",
+                rating: "",
+                movie: ""
+            },
         }
     },
 
@@ -192,7 +221,53 @@ export default {
 
             this.currentMediaDetails = media;
 
+            let url  = `./admin/comment.php?movies_id=${this.currentMediaDetails.movies_id}`;
+            fetch(url)
+                .then(res => res.json())
+                .then(data => {
+                    this.currentMediaReviews = data;
+                })
+                .catch(function(error) {
+                    console.error(error);
+                });
         },
+
+        submitComment(){
+            if(this.input.comment != "" && this.input.rating != "") {
+                // fetch the user from the DB
+                // generate the form data
+                let formData = new FormData();
+
+                formData.append("comment", this.input.comment);
+                formData.append("rating", this.input.rating);
+                formData.append("movie", this.input.movie);
+
+                let url = `./admin/scripts/comment_submit.php`;
+
+                fetch(url, {
+                    method: 'POST',
+                    body: formData
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        this.input.comment = "";
+                        this.input.rating  = "";
+                        return fetch(`./admin/comment.php?movies_id=${this.input.movie}`);
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+
+                        this.currentMediaReviews = data;
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+
+
+
+            }
+        }
 
     }
 }

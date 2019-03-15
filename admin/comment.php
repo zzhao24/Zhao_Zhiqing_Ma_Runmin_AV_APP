@@ -10,7 +10,7 @@
 
 		$movid = $_GET['movies_id'];
 
-		$results = getComments($tbl, $col, $tbl2, $movid);
+		$results = getComments($tbl, $col, $movid);
 
 		echo json_encode($results);
 

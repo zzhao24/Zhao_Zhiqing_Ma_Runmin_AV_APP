@@ -64,10 +64,10 @@
     }
 
 
-    function getComments($tbl, $col, $tbl2, $movid) {
+    function getComments($tbl, $col, $movid) {
         include('connect.php');
 
-        $querySingle = 'SELECT r.rating_id, r.movies_id, r.comement, r.ratings, u.username FROM '.$tbl.' as r LEFT JOIN '.$tbl2.' as u ON (r.user_id = u.user_id) WHERE r.movies_id = '.$movid;
+        $querySingle = 'SELECT * FROM '.$tbl.' WHERE '.$col.' = '.$movid;
 
         //echo $filterQuery;
         //exit;
