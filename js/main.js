@@ -3,6 +3,7 @@ import UsersComponent from './components/UsersComponent.js';
 import LoginComponent from './components/LoginComponent.js';
 import AdminComponent from './components/AdminComponent.js';
 import UserHomeComponent from './components/UserHomeComponent.js';
+import KidComponent from "./components/KidComponent.js";
 
 let router = new VueRouter({
 
@@ -11,6 +12,7 @@ let router = new VueRouter({
       { path: '/login', name: "login", component: LoginComponent },
       { path: '/users', name: 'users', component: UsersComponent },
       { path: '/userhome', name: "home", component: UserHomeComponent, props: true },
+      { path: '/kidhome', name: "kid", component: KidComponent },
       { path: '/admin', name: 'admin', component: AdminComponent }
   ]
 });

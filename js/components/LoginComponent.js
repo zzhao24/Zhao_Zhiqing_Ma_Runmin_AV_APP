@@ -14,7 +14,7 @@ export default {
                                 <label class="sr-only" for="exampleInputPassword1">Password</label>
                                 <input  v-model="input.password" type="password" class="form-control" id="inlineFormPassword" placeholder="password" required>
                             </div>
-                            <button v-on:click.prevent="login()" type="submit" class="btn btn-primary">Submit</button
+                            <button v-on:click.prevent="login()" type="submit" class="btn btn-primary">Submit</button>
             
                         </form>
                     </div>
