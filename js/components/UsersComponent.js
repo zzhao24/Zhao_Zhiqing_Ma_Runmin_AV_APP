@@ -2,17 +2,16 @@ import UserComponent from './UserComponent.js';
 
 export default {
 	template: `
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-12">
-				<h1 class="user-message">{{ message }}</h1>
-			</div>
-
-
-			<user v-for="(user, index) in userList" :liveuser="user" :key="index"></user>     
-
-		</div>
-	</div>
+    <div class="component-wrapper" id="users">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 mb-5">
+                    <h1 class="user-message text-center white">{{ message }}</h1>
+                </div>
+                <user v-for="(user, index) in userList" :liveuser="user" :key="index"></user>
+            </div>
+        </div>
+    </div>
 	`,
 
 	created: function() {
@@ -22,7 +21,7 @@ export default {
 
 	data() {
 	  return {
-		message: `Who's Using Roku?`,
+		message: `Select your user type`,
 
 		userList: []
 	  }
