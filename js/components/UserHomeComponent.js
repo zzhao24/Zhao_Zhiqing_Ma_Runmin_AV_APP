@@ -92,41 +92,41 @@ export default {
                     </div>
     
                     <!-- Audio Genres -->
-                    <div class="row justify-content-center" v-if="activeMediaType == 'audio'">
+                    <div class="row justify-content-center" v-if="activeMediaType == 'audio'  && retrievedMedia.length > 0">
                         <div class="col-auto my-2">
-                            <a class="text" href="alternative" @click.prevent="loadMedia('Alternative', 'video')">Action</a>
+                            <a class="text" href="alternative" @click.prevent="loadMedia('Rock', 'audio')">Rock</a>
                         </div>
                         <div class="col-auto my-2">
-                            <a class="text" href="blues" @click.prevent="loadMedia('Blues', 'video')">Comedy</a>
+                            <a class="text" href="blues" @click.prevent="loadMedia('Rap', 'audio')">Rap</a>
                         </div>
                         <div class="col-auto my-2">
-                            <a class="text" href="rock" @click.prevent="loadMedia('Rock', 'video')">Family</a>
+                            <a class="text" href="rock" @click.prevent="loadMedia('Pop', 'audio')">Pop</a>
                         </div>
                         <div class="col-auto my-2">
-                            <a class="text" href="soundtrack" @click.prevent="loadMedia('Soundtrack', 'video')">Fantasy</a>
+                            <a class="text" href="soundtrack" @click.prevent="loadMedia('Electronic', 'audio')">Electronic</a>
                         </div>
                         <div class="col-auto my-2">
-                            <a class="text" href="all" @click.prevent="loadMedia(null, 'video')">All</a>
+                            <a class="text" href="all" @click.prevent="loadMedia(null, 'audio')">All</a>
                         </div>
                     </div>
     
     
                     <!-- TV Genres -->
-                    <div class="row justify-content-center" v-if="activeMediaType == 'tv'">
+                    <div class="row justify-content-center" v-if="activeMediaType == 'television' && retrievedMedia.length > 0">
                         <div class="col-auto my-2">
-                            <a class="text" href="action" @click.prevent="loadMedia('Action', 'video')">Action</a>
+                            <a class="text" href="action" @click.prevent="loadMedia('Action', 'television')">Action</a>
                         </div>
                         <div class="col-auto my-2">
-                            <a class="text" href="comedy" @click.prevent="loadMedia('Comedy', 'video')">Comedy</a>
+                            <a class="text" href="comedy" @click.prevent="loadMedia('Adventure', 'television')">Comedy</a>
                         </div>
                         <div class="col-auto my-2">
-                            <a class="text" href="family" @click.prevent="loadMedia('Family', 'video')">Family</a>
+                            <a class="text" href="family" @click.prevent="loadMedia('Drama', 'television')">Family</a>
                         </div>
                         <div class="col-auto my-2">
-                            <a class="text" href="fantasy" @click.prevent="loadMedia('Fantasy', 'video')">Fantasy</a>
+                            <a class="text" href="fantasy" @click.prevent="loadMedia('Crime', 'television')">Fantasy</a>
                         </div>
                         <div class="col-auto my-2">
-                            <a class="text" href="all" @click.prevent="loadMedia(null, 'video')">All</a>
+                            <a class="text" href="all" @click.prevent="loadMedia(null, 'television')">All</a>
                         </div>
                     </div>
                 </div>
