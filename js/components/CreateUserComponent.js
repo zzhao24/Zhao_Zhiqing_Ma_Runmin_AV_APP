@@ -1,15 +1,13 @@
 export default {
-    props: ['currentuser'],
     template: `
     <div class="component-wrapper" id="users">
         <div class="container">
-            <h1>Admin Dashboard ???</h1>
-            <h3>Welcome! ???</h3>
+            <h1>Create User</h1>
             <p> {{ message }}</p>
             <nav>
                 <ul>
-                    <li><a href="#" @click="createUser()">Create User</a></li>
                     <li><a href="#" @click="deleteUser()">Delete User</a></li>
+                    <li><a href="#" @click="navtoadmin()">Dashboard</a></li>
                     <li><a href="">Sign Out</a></li>
                     <!-- scripts/caller.php?caller_id=logout -->
                 </ul>
@@ -23,9 +21,8 @@ export default {
             message: "This is the admin dashboard page"
         }
     },
-
     methods: {
-        createUser() {
+        navtoadmin() {
             this.$router.push({name: "createuser", params: {currentuser: this.liveuser}});
         },
         deleteUser() {
