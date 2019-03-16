@@ -12,7 +12,7 @@
 		} else if ($type == "audio"){
 			$tbl = "tbl_audio";
 			$col = 'audio_id';
-			$tbl3 = 'tbl_aud_genre';
+			$tbl3 = 'tbl_audio_genre';
 		}else{
 			$tbl = "tbl_tvshows";
 			$col = 'tv_id';
