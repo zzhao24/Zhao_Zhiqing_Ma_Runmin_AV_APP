@@ -63,4 +63,30 @@
         }
     }
 
+
+    function getComments($tbl, $col, $movid) {
+        include('connect.php');
+
+        $querySingle = 'SELECT * FROM '.$tbl.' WHERE '.$col.' = '.$movid;
+
+        //echo $filterQuery;
+        //exit;
+        $runQuery = $pdo->query($querySingle);
+        if($runQuery){
+
+            $results = array();
+
+            while($row = $runQuery->fetch(PDO::FETCH_ASSOC)) {
+                $results[] = $row;
+            }
+
+            return $results;
+        }
+
+        else{
+            $error = 'There was a problem';
+            return $error;
+        }
+    }
+
 ?>

@@ -44,7 +44,7 @@ export default {
              formData.append("username", this.input.username);
              formData.append("password", this.input.password);
 
-             let url = `./admin/scripts/admin_login.php`;
+                 let url = `./admin/scripts/admin_login.php`;
  
              fetch(url, {
                     method: 'POST',
