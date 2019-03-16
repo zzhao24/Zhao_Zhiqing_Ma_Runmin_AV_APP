@@ -91,4 +91,15 @@ h6{
   background-color: $orange;
   height: 50px;
   font-size: .85rem;
+
+  a{
+    color: $white;
+    &:hover{
+      text-decoration: none;
+    }
+  }
+
+  .svg-inline--fa{
+    font-size: 20px;
+  }
 }
