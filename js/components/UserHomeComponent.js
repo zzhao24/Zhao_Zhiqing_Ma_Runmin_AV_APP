@@ -26,13 +26,15 @@ export default {
                         <p class="desc" v-html="currentMediaDetails.movies_storyline"></p>
                         <span class="media-time">{{currentMediaDetails.movies_runtime}}</span>
                         <span class="media-year">Released in {{currentMediaDetails.movies_year}}</span>
-                        <div class="comment-area">
+                       <div class="comment-area">
                             <div v-for="review in currentMediaReviews" class="my-2">
                                 <p v-html="review.comment"></p>
                                 <p class="ratings">Rated: {{review.rating_number}} / 5</p>
                             </div>
                         </div>
                     </div>
+                    
+                   
    
                     <div class="first-video-wrapper" v-if="activeMediaType == 'audio' && retrievedMedia.length > 0">
                         <img :src="'images/audio/' + currentMediaDetails.audio_cover" alt="album art" class="img-fluid"/>
@@ -40,8 +42,29 @@ export default {
                         <h3 class="white">{{currentMediaDetails.audio_artist}} * {{currentMediaDetails.audio_title}}</h3>
                         <p class="desc" v-html="currentMediaDetails.audio_storyline"></p>
                         <span class="media-year">Released in {{currentMediaDetails.audio_year}}</span>
+                         <div class="comment-area">
+                            <div v-for="review in currentMediaReviews" class="my-2">
+                                <p v-html="review.comment"></p>
+                                <p class="ratings">Rated: {{review.rating_number}} / 5</p>
+                            </div>
+                        </div>
                     </div>
-   
+                    
+                    
+                    <div class="first-video-wrapper" v-if="activeMediaType == 'television' && retrievedMedia.length > 0">
+                        <video autoplay controls muted :src="'shows/' + currentMediaDetails.tvshows_trailer"></video>
+                        <h3 class="white">{{currentMediaDetails.tvshows_title}}</h3>
+                        <p class="desc" v-html="currentMediaDetails.tvshows_storyline"></p>
+                        <span class="media-time">{{currentMediaDetails.tvshows_seasons}}</span>
+                        <span class="media-year">Network: {{currentMediaDetails.tvshows_network}}</span>
+                         <div class="comment-area">
+                            <div v-for="review in currentMediaReviews" class="my-2">
+                                <p v-html="review.comment"></p>
+                                <p class="ratings">Rated: {{review.rating_number}} / 5</p>
+                            </div>
+                        </div>
+                    </div>
+ 
    
                 <form id="comment-form">
                       <div class="form-group">
@@ -60,7 +83,9 @@ export default {
                             </select>
                       </div>
                       
-                      <input v-model="input.movie = currentMediaDetails.movies_id"  type="hidden">
+                      <input v-if="activeMediaType == 'video'" v-model="input.movie = currentMediaDetails.movies_id"  type="hidden">
+                      <input v-if="activeMediaType == 'audio' && retrievedMedia.length > 0" v-model="input.movie = currentMediaDetails.audio_id"  type="hidden">
+                      <input v-if="activeMediaType == 'television' && retrievedMedia.length > 0" v-model="input.movie = currentMediaDetails.tvshows_id"  type="hidden">
 
                       <button v-on:click.prevent="submitComment()" type="submit" class="btn btn-primary">Submit</button>
                 </form>
@@ -117,13 +142,13 @@ export default {
                             <a class="text" href="action" @click.prevent="loadMedia('Action', 'television')">Action</a>
                         </div>
                         <div class="col-auto my-2">
-                            <a class="text" href="comedy" @click.prevent="loadMedia('Adventure', 'television')">Comedy</a>
+                            <a class="text" href="adventure" @click.prevent="loadMedia('Adventure', 'television')">Adventure</a>
                         </div>
                         <div class="col-auto my-2">
-                            <a class="text" href="family" @click.prevent="loadMedia('Drama', 'television')">Family</a>
+                            <a class="text" href="drama" @click.prevent="loadMedia('Drama', 'television')">Drama</a>
                         </div>
                         <div class="col-auto my-2">
-                            <a class="text" href="fantasy" @click.prevent="loadMedia('Crime', 'television')">Fantasy</a>
+                            <a class="text" href="crime" @click.prevent="loadMedia('Crime', 'television')">Crime</a>
                         </div>
                         <div class="col-auto my-2">
                             <a class="text" href="all" @click.prevent="loadMedia(null, 'television')">All</a>
@@ -137,6 +162,9 @@ export default {
                 </div>
                 <div v-if="activeMediaType == 'audio'" v-for="media in retrievedMedia" class="col-6 col-md-4 col-lg-3 my-2">
                     <img :src="'images/audio/' + media.audio_cover" alt="media thumb" @click="switchActiveMedia(media)" class="img-thumbnail rounded float-left media-thumb audio-thumb">
+                </div>
+                <div v-if="activeMediaType == 'television'" v-for="media in retrievedMedia" class="col-6 col-md-4 col-lg-3 my-2">
+                    <img :src="'images/shows/' + media.tvshows_cover" alt="media thumb" @click="switchActiveMedia(media)" class="img-thumbnail rounded float-left media-thumb audio-thumb">
                 </div>
     
             </div>
@@ -204,7 +232,17 @@ export default {
                     // grab the first one in the list and make it active
                     this.currentMediaDetails = data[0];
 
-                    return fetch(`./admin/comment.php?movies_id=${this.currentMediaDetails.movies_id}`);
+                    let mediaid = null;
+
+                    if (mediaType === 'video'){
+                        mediaid = this.currentMediaDetails.movies_id;
+                    } else if (mediaType === 'audio'){
+                        mediaid = this.currentMediaDetails.audio_id;
+                    }else if (mediaType === 'television') {
+                        mediaid = this.currentMediaDetails.tvshows_id;
+                    }
+
+                    return fetch(`./admin/comment.php?media=${mediaType}&&movies_id=${mediaid}`);
                 })
                 .then(res => res.json())
                 .then(data => {
@@ -221,7 +259,18 @@ export default {
 
             this.currentMediaDetails = media;
 
-            let url  = `./admin/comment.php?movies_id=${this.currentMediaDetails.movies_id}`;
+
+            let mediaid = null;
+
+            if (this.activeMediaType === 'video'){
+                mediaid = this.currentMediaDetails.movies_id;
+            } else if (this.activeMediaType === 'video'){
+                mediaid = this.currentMediaDetails.audio_id;
+            }else if (this.activeMediaType === 'television') {
+                mediaid = this.currentMediaDetails.tvshows_id;
+            }
+
+            let url  = `./admin/comment.php?media=${this.activeMediaType }&&movies_id=${mediaid}`;
             fetch(url)
                 .then(res => res.json())
                 .then(data => {
@@ -241,6 +290,8 @@ export default {
                 formData.append("comment", this.input.comment);
                 formData.append("rating", this.input.rating);
                 formData.append("movie", this.input.movie);
+                formData.append("type", this.activeMediaType);
+
 
                 let url = `./admin/scripts/comment_submit.php`;
 
@@ -253,7 +304,7 @@ export default {
                         console.log(data);
                         this.input.comment = "";
                         this.input.rating  = "";
-                        return fetch(`./admin/comment.php?movies_id=${this.input.movie}`);
+                        return fetch(`./admin/comment.php?media=${this.activeMediaType}&&movies_id=${this.input.movie}`);
                     })
                     .then(res => res.json())
                     .then(data => {
@@ -263,8 +314,6 @@ export default {
                     .catch(function (error) {
                         console.log(error);
                     });
-
-
 
             }
         }
