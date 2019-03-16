@@ -78,3 +78,33 @@
     }
   }
 }
+
+/* Comment */
+.comment-area{
+  margin-top: 30px;
+  margin-bottom: 30px;
+  @extend .row;
+  & > div{
+    @extend .col-12;
+    @include media-breakpoint-up(md){
+      @include make-col(6);
+    }
+
+    .inner{
+      background-color: $white;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px 3px rgba(#000, .5);
+      color: $orange;
+      padding: 15px; // trbl
+      .ratings{
+        margin-bottom: 0;
+        font-weight: bold;
+        text-align: right;
+      }
+    }
+  }
+}
+
+

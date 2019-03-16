@@ -7,7 +7,7 @@ export default {
             <div class="row justify-content-center">
                 <div class="col-xl-10">
                     <nav class="col-12 side-nav">
-                        <ul class="media-type">
+                        <ul class="media-type list-unstyled">
                             <li v-for="media in mediaTypes" :data-type="media.description" @click="loadMedia(null, media.description)">
                             <span>
                                 <i v-bind:class="[media.iconClass]"></i>
