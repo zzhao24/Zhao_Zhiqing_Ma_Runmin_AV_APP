@@ -14,10 +14,14 @@
 * Adobe Illustrator
 * Adobe XD
 
+## Login Info
+* Username: admin
+* Password: 1
+
 
 ## build with
   * node.js -- developing environment
-  * gulp -- insert plugins
+  * Laravel-mix -- sass compiler
   * sass -- easy coding
   * javascript -- Animation
   * Vue.js -- fetch API
