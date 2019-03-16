@@ -5,21 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Roku - Audio / Video App</title>
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="../css/main.css">
     <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js" integrity="sha384-SlE991lGASHoBfWbelyBPLsUlwY1GwNDJo3jSJO04KZ33K2bwfV9YBauFfnzvynJ" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/vue"></script>
     <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
 </head>
 <body>
 <main id="app">
-    <div v-if="!authenticated" class="login-bg"></div>
-
     <!-- MAIN HEADER -->
     <header id="main-header" class="py-3 fixed-top">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12 d-flex justify-content-center">
-                    <img src="images/roku.svg" alt="Roku logo" class="header-logo">
+                    <img src="../images/roku.svg" alt="Roku logo" class="header-logo">
                 </div>
                 <nav v-if="authenticated" class="position-absolute" id="header-nav">
                     <ul class="list-inline mb-0">
@@ -34,12 +32,12 @@
 
     <!-- first thing in component templates should be a container -->
 
-    <div class="component-wrapper video-container" id="kid-wrap">
+    <div class="component-wrapper video-container" id="parent-wrap">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-xl-10">
                     <div class="first-video-wrapper">
-                        <video autoplay controls muted src="video/avengers.mp4"></video>
+                        <video autoplay controls muted src="../video/avengers.mp4"></video>
                         <h3 class="white">Guardians of the Galaxy Vol. 2</h3>
                         <p class="desc">The Guardians must fight to keep their newfound family together as they unravel the mystery of Peter Quill&rsquo;s true parentage.</p>
                     </div>
@@ -67,34 +65,34 @@
                         </div>
 
                         <div class="col-6 col-md-4 col-lg-3 my-2">
-                            <img src="images/video/guardians2.jpg" alt="media thumb" class="img-thumbnail rounded">
+                            <img src="../images/video/guardians2.jpg" alt="media thumb" class="img-thumbnail rounded">
                         </div>
                         <div class="col-6 col-md-4 col-lg-3 my-2">
-                            <img src="images/video/guardians2.jpg" alt="media thumb" class="img-thumbnail rounded">
+                            <img src="../images/video/guardians2.jpg" alt="media thumb" class="img-thumbnail rounded">
                         </div>
                         <div class="col-6 col-md-4 col-lg-3 my-2">
-                            <img src="images/video/guardians2.jpg" alt="media thumb" class="img-thumbnail rounded">
+                            <img src="../images/video/guardians2.jpg" alt="media thumb" class="img-thumbnail rounded">
                         </div>
                         <div class="col-6 col-md-4 col-lg-3 my-2">
-                            <img src="images/video/guardians2.jpg" alt="media thumb" class="img-thumbnail rounded">
+                            <img src="../images/video/guardians2.jpg" alt="media thumb" class="img-thumbnail rounded">
                         </div>
                         <div class="col-6 col-md-4 col-lg-3 my-2">
-                            <img src="images/video/guardians2.jpg" alt="media thumb" class="img-thumbnail rounded">
+                            <img src="../images/video/guardians2.jpg" alt="media thumb" class="img-thumbnail rounded">
                         </div>
                         <div class="col-6 col-md-4 col-lg-3 my-2">
-                            <img src="images/video/guardians2.jpg" alt="media thumb" class="img-thumbnail rounded">
+                            <img src="../images/video/guardians2.jpg" alt="media thumb" class="img-thumbnail rounded">
                         </div>
                         <div class="col-6 col-md-4 col-lg-3 my-2">
-                            <img src="images/video/guardians2.jpg" alt="media thumb" class="img-thumbnail rounded">
+                            <img src="../images/video/guardians2.jpg" alt="media thumb" class="img-thumbnail rounded">
                         </div>
                         <div class="col-6 col-md-4 col-lg-3 my-2">
-                            <img src="images/video/guardians2.jpg" alt="media thumb" class="img-thumbnail rounded">
+                            <img src="../images/video/guardians2.jpg" alt="media thumb" class="img-thumbnail rounded">
                         </div>
                         <div class="col-6 col-md-4 col-lg-3 my-2">
-                            <img src="images/video/guardians2.jpg" alt="media thumb" class="img-thumbnail rounded">
+                            <img src="../images/video/guardians2.jpg" alt="media thumb" class="img-thumbnail rounded">
                         </div>
                         <div class="col-6 col-md-4 col-lg-3 my-2">
-                            <img src="images/video/guardians2.jpg" alt="media thumb" class="img-thumbnail rounded">
+                            <img src="../images/video/guardians2.jpg" alt="media thumb" class="img-thumbnail rounded">
                         </div>
                     </div>
                 </div>
@@ -118,62 +116,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-<script type="module" src="js/main.js"></script>
+<script type="module" src="../js/main.js"></script>
 
 <script>
     $('.toast').toast();
 </script>
 </body>
 </html>
-
-<div class="component-wrapper video-container" id="kid-wrap">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-xl-10 d-none">
-                <nav class="col-12 side-nav">
-                    <ul class="media-type list-unstyled">
-                        <li v-for="media in mediaTypes" :data-type="media.description" @click="loadMedia(null, media.description)">
-                            <span>
-                                <i v-bind:class="[media.iconClass]"></i>
-                            </span>
-
-                            <span class="d-none d-md-block">{{ media.description }}</span>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-
-
-            <div class="col-xl-10">
-                <div class="first-video-wrapper" v-if="activeMediaType == 'video' && retrievedMedia.length > 0">
-                    <video autoplay controls muted :src="'video/' + currentMediaDetails.movies_trailer"></video>
-                    <h3 class="white">{{currentMediaDetails.movies_title}}</h3>
-                    <p class="desc" v-html="currentMediaDetails.movies_storyline"></p>
-                    <span class="media-time">{{currentMediaDetails.movies_runtime}}</span>
-                    <span class="media-year">Released in {{currentMediaDetails.movies_year}}</span>
-                </div>
-
-
-                <div class="first-video-wrapper" v-if="activeMediaType == 'audio' && retrievedMedia.length > 0">
-                    <img :src="'images/audio/' + currentMediaDetails.audio_cover" alt="album art" class="img-fluid"/>
-                    <audio autoplay controls :src="'audio/' + currentMediaDetails.audio_src"/>
-                    <h3 class="white">{{currentMediaDetails.audio_artist}} * {{currentMediaDetails.audio_title}}</h3>
-                    <p class="desc" v-html="currentMediaDetails.audio_storyline"></p>
-                    <span class="media-year">Released in {{currentMediaDetails.audio_year}}</span>
-                </div>
-
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-12 genres my-4">
-
-                <div v-if="activeMediaType == 'video'" v-for="media in retrievedMedia" class="col-6 col-md-4 col-lg-3 my-2">
-                    <img :src="'images/video/' + media.movies_cover" alt="media thumb" @click="switchActiveMedia(media)" class="img-thumbnail rounded float-left media-thumb">
-                </div>
-
-
-            </div>
-        </div>
-    </div>
-</div>

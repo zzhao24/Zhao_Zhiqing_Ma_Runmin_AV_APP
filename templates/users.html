@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Roku - Audio / Video App</title>
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="../css/main.css">
     <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js" integrity="sha384-SlE991lGASHoBfWbelyBPLsUlwY1GwNDJo3jSJO04KZ33K2bwfV9YBauFfnzvynJ" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/vue"></script>
     <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
@@ -19,7 +19,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12 d-flex justify-content-center">
-                    <img src="images/roku.svg" alt="Roku logo" class="header-logo">
+                    <img src="../images/roku.svg" alt="Roku logo" class="header-logo">
                 </div>
                 <nav v-if="authenticated" class="position-absolute" id="header-nav">
                     <ul class="list-inline mb-0">
@@ -38,15 +38,15 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-12 col-md-4 col-lg-3 text-center user-wrap">
-                    <img class="user-avatar" src="images/adult.png" alt="Parent">
+                    <img class="user-avatar" src="../images/adult.png" alt="Parent">
                     <p class="text-uppercase">Parent</p>
                 </div>
                 <div class="col-12 col-md-4 col-lg-3 text-center user-wrap">
-                    <img class="user-avatar" src="images/kid.png" alt="Kid">
+                    <img class="user-avatar" src="../images/kid.png" alt="Kid">
                     <p class="text-uppercase">Kid</p>
                 </div>
                 <div class="col-12 col-md-4 col-lg-3 text-center user-wrap">
-                    <img class="user-avatar" src="images/temp_avatar.png" alt="Guest">
+                    <img class="user-avatar" src="../images/temp_avatar.png" alt="Guest">
                     <p class="text-uppercase">Guest</p>
                 </div>
             </div>
@@ -66,7 +66,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-<script type="module" src="js/main.js"></script>
+<script type="module" src="../js/main.js"></script>
 
 <script>
     $('.toast').toast();
