@@ -35,7 +35,12 @@
     <router-view @authenticated="setAuthenticated" @autherror="popError"/>
 </main>
 
-<footer class="container-fluid d-flex align-items-center justify-content-end fixed-bottom" id="main-footer">
+<footer class="container-fluid d-flex align-items-center justify-content-between fixed-bottom" id="main-footer">
+    <div class="social-media">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=localhost/av_app/" target="_blank">
+            <i class="fab fa-facebook-square"></i>
+        </a>
+    </div>
     <div class="copyright">
         <p class="mb-0">&copy; Copyright 2019. Roku. All Rights Reserved. </p>
     </div>
