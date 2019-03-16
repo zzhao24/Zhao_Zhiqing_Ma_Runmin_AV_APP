@@ -7,8 +7,8 @@ export default {
             <div class="row justify-content-center">
                 <div class="col-xl-10">
                     <nav class="col-12 side-nav">
-                        <ul class="media-type">
-                            <li v-for="media in mediaTypes" :data-type="media.description" @click="loadMedia(null, media.description)">
+                        <ul class="media-type list-unstyled d-flex justify-content-around">
+                            <li v-for="media in mediaTypes" :data-type="media.description" @click="loadMedia(null, media.description)" class="text-center mx-2 c-pointer">
                             <span>
                                 <i v-bind:class="[media.iconClass]"></i>
                             </span>
@@ -27,9 +27,13 @@ export default {
                         <span class="media-time">{{currentMediaDetails.movies_runtime}}</span>
                         <span class="media-year">Released in {{currentMediaDetails.movies_year}}</span>
                        <div class="comment-area">
+                        <h3 class="col-12">Comments: </h3>
                             <div v-for="review in currentMediaReviews" class="my-2">
+                            <div class="inner">
                                 <p v-html="review.comment"></p>
                                 <p class="ratings">Rated: {{review.rating_number}} / 5</p>
+                            </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -43,9 +47,13 @@ export default {
                         <p class="desc" v-html="currentMediaDetails.audio_storyline"></p>
                         <span class="media-year">Released in {{currentMediaDetails.audio_year}}</span>
                          <div class="comment-area">
+                            <h3 class="col-12">Comments: </h3>
                             <div v-for="review in currentMediaReviews" class="my-2">
+                            <div class="inner">
                                 <p v-html="review.comment"></p>
                                 <p class="ratings">Rated: {{review.rating_number}} / 5</p>
+                            </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -58,9 +66,13 @@ export default {
                         <span class="media-time">{{currentMediaDetails.tvshows_seasons}}</span>
                         <span class="media-year">Network: {{currentMediaDetails.tvshows_network}}</span>
                          <div class="comment-area">
+                            <h3 class="col-12">Comments: </h3>
                             <div v-for="review in currentMediaReviews" class="my-2">
+                            <div class="inner">
                                 <p v-html="review.comment"></p>
                                 <p class="ratings">Rated: {{review.rating_number}} / 5</p>
+                            </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -158,13 +170,13 @@ export default {
     
     
                 <div v-if="activeMediaType == 'video'" v-for="media in retrievedMedia" class="col-6 col-md-4 col-lg-3 my-2">
-                    <img :src="'images/video/' + media.movies_cover" alt="media thumb" @click="switchActiveMedia(media)" class="img-thumbnail rounded float-left media-thumb">
+                    <img :src="'images/video/' + media.movies_cover" alt="media thumb" @click="switchActiveMedia(media)" class="img-thumbnail rounded float-left media-thumb c-pointer w-100">
                 </div>
                 <div v-if="activeMediaType == 'audio'" v-for="media in retrievedMedia" class="col-6 col-md-4 col-lg-3 my-2">
-                    <img :src="'images/audio/' + media.audio_cover" alt="media thumb" @click="switchActiveMedia(media)" class="img-thumbnail rounded float-left media-thumb audio-thumb">
+                    <img :src="'images/audio/' + media.audio_cover" alt="media thumb" @click="switchActiveMedia(media)" class="img-thumbnail rounded media-thumb audio-thumb c-pointer w-100">
                 </div>
                 <div v-if="activeMediaType == 'television'" v-for="media in retrievedMedia" class="col-6 col-md-4 col-lg-3 my-2">
-                    <img :src="'images/shows/' + media.tvshows_cover" alt="media thumb" @click="switchActiveMedia(media)" class="img-thumbnail rounded float-left media-thumb audio-thumb">
+                    <img :src="'images/shows/' + media.tvshows_cover" alt="media thumb" @click="switchActiveMedia(media)" class="img-thumbnail rounded media-thumb shows-thumb c-pointer w-100">
                 </div>
     
             </div>
