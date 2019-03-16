@@ -22,6 +22,8 @@ export default {
             // Check access level for user
             if (parseInt(access) === 4 ) { // kid's access level = 4
                 this.$router.push({name: "kid", params: {currentuser: this.liveuser}});
+            }else if (parseInt(access) === 6 ){ //6 for admin
+                this.$router.push({name: "admin", params: {currentuser: this.liveuser}});
             } else {
                 this.$router.push({name: "home", params: {currentuser: this.liveuser}});
             }
